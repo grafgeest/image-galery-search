@@ -7,17 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class SearchService {
+public interface SearchService {
 
-    private ImageRepository imageRepository;
+    List<Image> searchImages(String searchTerm);
 
-    @Autowired
-    public void setImageRepository(ImageRepository imageRepository) {
-        this.imageRepository = imageRepository;
-    }
-
-    public List<Image> searchImages(String searchTerm) {
-        return imageRepository.searchTerm(searchTerm);
-    }
 }

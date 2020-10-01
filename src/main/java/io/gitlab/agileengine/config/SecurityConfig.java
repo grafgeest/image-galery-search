@@ -11,19 +11,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    // TODO endpoints should be secured
     @Override
     public void configure(WebSecurity webSecurity) {
         webSecurity
                 .ignoring()
+                .antMatchers("/admin/*")
                 .antMatchers("/search/*");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // disable csrf filter. May need to be enabled in a future story
         http.csrf().disable();
-
-        // enable automatic CORS handling. See CorsConfigurationSource below for implementation details.
         http.cors();
     }
 }

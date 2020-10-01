@@ -1,8 +1,8 @@
 package io.gitlab.agileengine.controller;
 
 import io.gitlab.agileengine.model.Image;
-import io.gitlab.agileengine.service.ImageService;
 import io.gitlab.agileengine.service.SearchService;
+import io.gitlab.agileengine.service.impl.SearchServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +15,12 @@ import java.util.List;
 @RestController
 public class SearchController {
 
-    @Autowired
     private SearchService searchService;
+
+    @Autowired
+    private void setSearchService(SearchService searchService) {
+        this.searchService = searchService;
+    }
 
     @GetMapping(value = "search/{searchTerm}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> search(@PathVariable("searchTerm") String searchTerm) {

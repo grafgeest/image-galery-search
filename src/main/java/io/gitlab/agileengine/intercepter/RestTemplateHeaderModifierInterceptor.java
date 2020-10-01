@@ -18,7 +18,8 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.util.Collections;
 
-
+// TODO fix links
+// TODO improve RestTemplate injection
 public class RestTemplateHeaderModifierInterceptor implements ClientHttpRequestInterceptor {
 
 //    @Value("${api.token}")
