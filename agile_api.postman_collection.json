@@ -1,0 +1,462 @@
+{
+  "info": {
+    "_postman_id": "bf65b35a-c1ba-41e3-bf15-b01462be30c9",
+    "name": "AgileEngine Image Server API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Step 1: Authorization",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "0b1a309b-f4b5-438d-85b0-442626ed6004",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "624cf63c-311e-40a2-806c-86ecf76b7f88",
+            "exec": [
+              "const responseData = pm.response.json();",
+              "console.log('Set', responseData.token)",
+              "pm.environment.set(\"accessToken\", responseData.token);",
+              "pm.globals.set(\"accessToken\", responseData.token);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"apiKey\": \"23567b218376f79d9415\"\n}"
+        },
+        "url": {
+          "raw": "http://interview.agileengine.com/auth",
+          "protocol": "http",
+          "host": [
+            "interview",
+            "agileengine",
+            "com"
+          ],
+          "port": "80",
+          "path": [
+            "auth"
+          ]
+        },
+        "description": "Obtain a token from this request"
+      },
+      "response": [
+        {
+          "name": "Step 1: Authorization",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"apiKey\": \"23567b218376f79d9415\"\n}"
+            },
+            "url": {
+              "raw": "http://interview.agileengine.com/auth",
+              "protocol": "http",
+              "host": [
+                "195",
+                "39",
+                "233",
+                "28"
+              ],
+              "port": "80",
+              "path": [
+                "auth"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Server",
+              "value": "nginx/1.12.2"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 26 Nov 2018 14:39:28 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "64"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"40-3Gji2659Ukk+W/qSc83QL9vorJQ\""
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"auth\": true,\n    \"token\": \"a70b960cd8712f956b4ea4face52c54366a3cd1f\"\n}"
+        },
+        {
+          "name": "Step 1: Authorization",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"apiKey\": \"23567b218376f79d9415\"\n}"
+            },
+            "url": {
+              "raw": "http://interview.agileengine.com/auth",
+              "protocol": "http",
+              "host": [
+                "195",
+                "39",
+                "233",
+                "28"
+              ],
+              "port": "80",
+              "path": [
+                "auth"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Server",
+              "value": "nginx/1.12.2"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 26 Nov 2018 14:39:28 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "64"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"40-3Gji2659Ukk+W/qSc83QL9vorJQ\""
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"auth\": true,\n    \"token\": \"a70b960cd8712f956b4ea4face52c54366a3cd1f\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Step 2: List Images",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "6b510ad9-3ce4-4ec6-97d2-a10225bdd486",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://interview.agileengine.com/images",
+          "protocol": "http",
+          "host": [
+            "interview",
+            "agileengine",
+            "com"
+          ],
+          "port": "80",
+          "path": [
+            "images"
+          ]
+        },
+        "description": "Get images from first page by default, using the Bearer token provided from Authorization step"
+      },
+      "response": []
+    },
+    {
+      "name": "Step 3: Get a particular image",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{accessToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://interview.agileengine.com/images/{{imageExample}}",
+          "protocol": "http",
+          "host": [
+            "interview",
+            "agileengine",
+            "com"
+          ],
+          "port": "80",
+          "path": [
+            "images",
+            "{{imageExample}}"
+          ]
+        },
+        "description": "Get a particular image by ID"
+      },
+      "response": [
+        {
+          "name": "Step 3: Get a particular image",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://interview.agileengine.com/images/{{imageExample}}",
+              "protocol": "http",
+              "host": [
+                "195",
+                "39",
+                "233",
+                "28"
+              ],
+              "port": "80",
+              "path": [
+                "images",
+                "{{imageExample}}"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Server",
+              "value": "nginx/1.12.2"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 26 Nov 2018 14:46:33 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "221"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"dd-P/dVmjEwJfiUhDZZzHdEoJwYR1c\""
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": \"3434f531d67bf89adcb3\",\n    \"author\": \"Palatable Drunk\",\n    \"camera\": \"Canon 1300\",\n    \"cropped_picture\": \"http://interview.agileengine.com/pictures/cropped/0002.jpg\",\n    \"full_picture\": \"http://interview.agileengine.com/pictures/full_size/0002.jpg\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Custom parameters for Step 2: List Images",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "ce09287c97bf310284be3c97619158cfed026004",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://interview.agileengine.com/images?page=3&limit=3",
+          "protocol": "http",
+          "host": [
+            "interview",
+            "agileengine",
+            "com"
+          ],
+          "port": "80",
+          "path": [
+            "images"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "3"
+            },
+            {
+              "key": "limit",
+              "value": "3"
+            }
+          ]
+        },
+        "description": "Add page and limit parameters"
+      },
+      "response": [
+        {
+          "name": "Custom parameters for Step 2: List Images",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://interview.agileengine.com/images?page=3&limit=3",
+              "protocol": "http",
+              "host": [
+                "195",
+                "39",
+                "233",
+                "28"
+              ],
+              "port": "80",
+              "path": [
+                "images"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "3"
+                },
+                {
+                  "key": "limit",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Server",
+              "value": "nginx/1.12.2"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 26 Nov 2018 14:46:55 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "379"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"17b-8s1ex1o14RxOgYmlci618DrrzqE\""
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"pictures\": [\n        {\n            \"id\": \"fe1123d264a09f072b77\",\n            \"cropped_picture\": \"http://interview.agileengine.com/pictures/cropped/011129columbus1-01.jpg\"\n        },\n        {\n            \"id\": \"65dc68d0e11c8005eba5\",\n            \"cropped_picture\": \"http://interview.agileengine.com/pictures/cropped/018086b.jpg\"\n        },\n        {\n            \"id\": \"be1bcbd856c1d6767c6c\",\n            \"cropped_picture\": \"http://interview.agileengine.com/pictures/cropped/01sc087.jpg\"\n        }\n    ],\n    \"page\": 3,\n    \"pageCount\": 87,\n    \"hasMore\": true\n}"
+        }
+      ]
+    }
+  ]
+}
